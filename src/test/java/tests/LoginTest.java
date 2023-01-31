@@ -28,7 +28,6 @@ public class LoginTest extends BaseTest {
 
     @Test
     public void correctInputTypes() {
-        LoginPage loginPage = new LoginPage(webDriver, webDriverWait);
 
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")));
 
@@ -41,9 +40,8 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void invalidUser(){
+    public void invalidUser() {
         Faker faker = new Faker();
-        LoginPage loginPage = new LoginPage(webDriver, webDriverWait);
 
         //presence of login button
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")));
@@ -61,9 +59,8 @@ public class LoginTest extends BaseTest {
     }
 
     @Test
-    public void validEmailInvalidPassword(){
+    public void validEmailInvalidPassword() {
         Faker faker = new Faker();
-        LoginPage loginPage = new LoginPage(webDriver, webDriverWait);
 
         //presence of login button
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")));
@@ -78,5 +75,56 @@ public class LoginTest extends BaseTest {
 
         Assert.assertTrue(webDriver.getCurrentUrl().contains("/login"));
         Assert.assertTrue(loginPage.getErrorMessage().getText().contains("Wrong password"));
+    }
+
+    @Test
+    public void validLogin() {
+
+        //presence of login button
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")));
+
+        String email = "admin@admin.com";
+        String password = "12345";
+
+        loginPage.login(email, password);
+
+        //presence of "Welcome Super Administrator" header message
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/h1")));
+
+        Assert.assertTrue(webDriver.getCurrentUrl().contains("/home"));
+    }
+
+    @Test
+    public void logout(){
+
+        //presence of login button
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")));
+
+        String email = "admin@admin.com";
+        String password = "12345";
+
+        loginPage.login(email, password);
+
+        //presence of "Welcome Super Administrator" header message
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/h1")));
+
+        Assert.assertTrue(welcomePage.getLogoutButton().isDisplayed());
+
+        welcomePage.getLogoutButton().click();
+
+        //presence of "Login" header message
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[1]/h1")));
+
+        Assert.assertTrue(webDriver.getCurrentUrl().contains("/login"));
+
+        webDriver.get("https://vue-demo.daniel-avellaneda.com/home");
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        Assert.assertTrue(webDriver.getCurrentUrl().contains("/login"));
     }
 }

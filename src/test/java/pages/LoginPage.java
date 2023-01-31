@@ -5,7 +5,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class LoginPage extends BasePage{
+public class LoginPage extends BasePage {
 
     public LoginPage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
@@ -31,7 +31,11 @@ public class LoginPage extends BasePage{
         return passwordInput;
     }
 
-    public void login (String email, String password){
+    public WebElement getErrorMessage() {
+        return errorMessage;
+    }
+
+    public void login(String email, String password) {
         emailInput.clear();
         passwordInput.clear();
 

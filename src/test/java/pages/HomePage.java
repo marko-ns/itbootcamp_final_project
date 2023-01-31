@@ -17,4 +17,11 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/h1")
     private WebElement headerText;
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div/div/header/div/div[3]/a[3]")
+    private WebElement loginPageButton;
+
+    public void getToLoginPage(){
+        loginPageButton.click();
+    }
+
 }

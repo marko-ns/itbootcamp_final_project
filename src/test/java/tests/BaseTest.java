@@ -31,5 +31,6 @@ public abstract class BaseTest {
     @BeforeMethod
     public void beforeMethod(){
         webDriver.get("https://vue-demo.daniel-avellaneda.com/");
+        webDriver.manage().window().maximize();
     }
 }

@@ -23,6 +23,14 @@ public class LoginPage extends BasePage{
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")
     private WebElement loginButton;
 
+    public WebElement getEmailInput() {
+        return emailInput;
+    }
+
+    public WebElement getPasswordInput() {
+        return passwordInput;
+    }
+
     public void login (String email, String password){
         emailInput.clear();
         passwordInput.clear();

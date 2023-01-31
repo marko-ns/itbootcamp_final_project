@@ -45,6 +45,7 @@ public class LoginTest extends BaseTest {
         Faker faker = new Faker();
         LoginPage loginPage = new LoginPage(webDriver, webDriverWait);
 
+        //presence of login button
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")));
 
         String fakeEmail = faker.internet().emailAddress();
@@ -52,9 +53,30 @@ public class LoginTest extends BaseTest {
 
         loginPage.login(fakeEmail, fakePassword);
 
+        //presence of error message
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
 
         Assert.assertTrue(webDriver.getCurrentUrl().contains("/login"));
         Assert.assertTrue(loginPage.getErrorMessage().getText().contains("User does not exist"));
+    }
+
+    @Test
+    public void validEmailInvalidPassword(){
+        Faker faker = new Faker();
+        LoginPage loginPage = new LoginPage(webDriver, webDriverWait);
+
+        //presence of login button
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")));
+
+        String email = "admin@admin.com";
+        String invalidPassword = faker.internet().password();
+
+        loginPage.login(email, invalidPassword);
+
+        //presence of error message
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[4]/div/div/div/div/div[1]")));
+
+        Assert.assertTrue(webDriver.getCurrentUrl().contains("/login"));
+        Assert.assertTrue(loginPage.getErrorMessage().getText().contains("Wrong password"));
     }
 }

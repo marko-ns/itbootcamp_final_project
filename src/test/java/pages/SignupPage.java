@@ -43,8 +43,13 @@ public class SignupPage extends BasePage {
     public WebElement getConfirmPasswordInput() {
         return confirmPasswordInput;
     }
+
     public WebElement getErrorMessage() {
         return errorMessage;
+    }
+
+    public WebElement getVerificationMessage() {
+        return verificationMessage;
     }
 
     public void signUp(String name, String email, String password, String confirmationPassword) {

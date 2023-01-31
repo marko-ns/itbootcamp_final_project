@@ -58,4 +58,23 @@ public class SignupTest extends BaseTest {
         Assert.assertTrue(webDriver.getCurrentUrl().endsWith("/signup"));
         Assert.assertTrue(signupPage.getErrorMessage().getText().contains("E-mail already exists"));
     }
+
+    @Test
+    public void validSignup(){
+
+        //presence of "Signup" button
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button")));
+
+        String name = "markmark1111";
+        String email = "markmark1111@gmail.com";
+        String password = "13579";
+        String confPassword = "13579";
+
+        signupPage.signUp(name, email, password, confPassword);
+
+        webDriverWait.until(ExpectedConditions.urlContains("/home"));
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[1]")));
+
+        Assert.assertTrue(welcomePage.getVerificationMessage().getText().contains("Verify your account"));
+    }
 }

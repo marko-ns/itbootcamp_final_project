@@ -20,8 +20,15 @@ public class HomePage extends BasePage{
     @FindBy(xpath = "//*[@id=\"app\"]/div/div/header/div/div[3]/a[3]")
     private WebElement loginPageButton;
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div/div/header/div/div[3]/a[4]")
+    private WebElement signupButton;
+
     public void getToLoginPage(){
         loginPageButton.click();
+    }
+
+    public void getToSignupPage(){
+        signupButton.click();
     }
 
 }

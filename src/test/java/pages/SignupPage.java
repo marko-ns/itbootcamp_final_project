@@ -43,8 +43,11 @@ public class SignupPage extends BasePage {
     public WebElement getConfirmPasswordInput() {
         return confirmPasswordInput;
     }
+    public WebElement getErrorMessage() {
+        return errorMessage;
+    }
 
-    public void signUp(String name, String email, String password, String confirmationPassowrd) {
+    public void signUp(String name, String email, String password, String confirmationPassword) {
         nameInput.clear();
         emailInput.clear();
         passwordInput.clear();
@@ -53,7 +56,7 @@ public class SignupPage extends BasePage {
         nameInput.sendKeys(name);
         emailInput.sendKeys(email);
         passwordInput.sendKeys(password);
-        confirmPasswordInput.sendKeys(confirmationPassowrd);
+        confirmPasswordInput.sendKeys(confirmationPassword);
 
         signUpButton.click();
     }

@@ -38,4 +38,24 @@ public class SignupTest extends BaseTest {
         Assert.assertEquals(password, "password");
         Assert.assertEquals(confirmPassword, "password");
     }
+
+    @Test
+    public void userAlreadyExists(){
+
+        //presence of "Signup" button
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button")));
+
+        String name = "Test Test";
+        String email = "admin@admin.com";
+        String password = "123654";
+        String confPassword = "123654";
+
+        signupPage.signUp(name, email, password, confPassword);
+
+        //presence of "Already exists" message
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/div/div/div/div/div[1]")));
+
+        Assert.assertTrue(webDriver.getCurrentUrl().endsWith("/signup"));
+        Assert.assertTrue(signupPage.getErrorMessage().getText().contains("E-mail already exists"));
+    }
 }

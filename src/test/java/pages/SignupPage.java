@@ -32,6 +32,18 @@ public class SignupPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[4]/div/div/div[1]")
     private WebElement verificationMessage;
 
+    public WebElement getEmailInput() {
+        return emailInput;
+    }
+
+    public WebElement getPasswordInput() {
+        return passwordInput;
+    }
+
+    public WebElement getConfirmPasswordInput() {
+        return confirmPasswordInput;
+    }
+
     public void signUp(String name, String email, String password, String confirmationPassowrd) {
         nameInput.clear();
         emailInput.clear();

@@ -8,6 +8,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import pages.HomePage;
 import pages.LoginPage;
+import pages.SignupPage;
 import pages.WelcomePage;
 
 import java.time.Duration;
@@ -18,8 +19,8 @@ public abstract class BaseTest {
     protected WebDriverWait webDriverWait;
     protected HomePage homePage;
     protected LoginPage loginPage;
-
     protected WelcomePage welcomePage;
+    protected SignupPage signupPage;
 
     @BeforeClass
     public void beforeClass(){
@@ -28,6 +29,7 @@ public abstract class BaseTest {
         this.homePage = new HomePage(webDriver, webDriverWait);
         this.loginPage = new LoginPage(webDriver, webDriverWait);
         this.welcomePage = new WelcomePage(webDriver, webDriverWait);
+        this.signupPage = new SignupPage(webDriver, webDriverWait);
     }
 
     @AfterClass

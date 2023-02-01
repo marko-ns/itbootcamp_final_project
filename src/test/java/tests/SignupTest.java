@@ -1,5 +1,6 @@
 package tests;
 
+import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
@@ -62,18 +63,21 @@ public class SignupTest extends BaseTest {
     @Test
     public void validSignup(){
 
+        Faker faker = new Faker();
+
         //presence of "Signup" button
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div/main/div/div[2]/div/div/div[2]/span/form/div/div[5]/button")));
 
-        String name = "markmark1111";
-        String email = "markmark1111@gmail.com";
+        String name = faker.name().name();
+        String email = faker.internet().emailAddress();
         String password = "13579";
-        String confPassword = "13579";
+        String confPassword = password;
 
         signupPage.signUp(name, email, password, confPassword);
 
         webDriverWait.until(ExpectedConditions.urlContains("/home"));
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[1]")));
+        //presence of text in popup window
+        webDriverWait.until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//*[@id=\"app\"]/div[4]/div/div/div[1]"), "Verify your account"));
 
         Assert.assertTrue(welcomePage.getVerificationMessage().getText().contains("Verify your account"));
     }

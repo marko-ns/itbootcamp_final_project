@@ -1,13 +1,18 @@
 package tests;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+import static org.openqa.selenium.support.locators.RelativeLocator.with;
+
 public class AdminCitiesTest extends BaseTest {
+
+    String city = "grad1212";
 
     @BeforeMethod
     @Override
@@ -23,7 +28,8 @@ public class AdminCitiesTest extends BaseTest {
     }
 
     @AfterMethod
-    public void afterMethod(){
+    public void afterMethod() {
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")));
         adminCitiesPage.getLogoutButton().click();
     }
 
@@ -34,10 +40,35 @@ public class AdminCitiesTest extends BaseTest {
     }
 
     @Test
-    public void createNewCity(){
-        adminCitiesPage.createNewCity("grad2");
+    public void createNewCity() {
+
+        adminCitiesPage.createNewCity(city);
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
 
         Assert.assertTrue(adminCitiesPage.getSuccessfullySavedMessage().getText().contains("Saved successfully"));
+    }
+
+    @Test
+    public void editCity() {
+        //presence of table
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table")));
+
+        for (WebElement city : adminCitiesPage.getCitiesTable()) {
+            if (city.getText().contains(this.city)){
+                WebElement editButton = city.findElement(By.id("edit"));
+                try {
+                    Thread.sleep(2000);
+                } catch (InterruptedException e) {
+                    throw new RuntimeException(e);
+                }
+                editButton.click();
+                adminCitiesPage.getEditInput().sendKeys(" -edited");
+                adminCitiesPage.getSaveButton().click();
+            }
+        }
+        //presence of "Saved successfully" message
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[2]/div/div/div/div/div[1]")));
+
+        Assert.assertTrue(adminCitiesPage.getEditSuccessfullySavedMessage().getText().contains("Saved successfully"));
     }
 }

@@ -31,13 +31,13 @@ public class AdminCitiesPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")
     private WebElement successfullySavedMessage;
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tr")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr")
     private List<WebElement> citiesTable;
 
-    @FindBy(xpath = "//*[@id=\"edit\"][ text() = ‘NoviSad11’ ]")
+    @FindBy(xpath = "//*[@id=\"edit\"][ text() = ‘NoviSad11’ ]") //not good
     private WebElement editLatestCityButton;
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[2]/div/div/div/div/div[1]")
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")
     private WebElement editSuccessfullySavedMessage;
 
     @FindBy(id = "search")
@@ -52,12 +52,32 @@ public class AdminCitiesPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")
     private WebElement deletedMessage;
 
+    @FindBy(id = "name")
+    private WebElement editInput;
+
+
+    public WebElement getSaveButton() {
+        return saveButton;
+    }
+
+    public WebElement getEditInput() {
+        return editInput;
+    }
+
     public WebElement getLogoutButton() {
         return logoutButton;
     }
 
     public WebElement getSuccessfullySavedMessage() {
         return successfullySavedMessage;
+    }
+
+    public List<WebElement> getCitiesTable() {
+        return citiesTable;
+    }
+
+    public WebElement getEditSuccessfullySavedMessage() {
+        return editSuccessfullySavedMessage;
     }
 
     public void createNewCity(String city) {

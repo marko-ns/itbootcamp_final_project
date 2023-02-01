@@ -1,8 +1,11 @@
 package pages;
 
+import org.openqa.selenium.By;
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
@@ -22,7 +25,7 @@ public class AdminCitiesPage extends BasePage {
     @FindBy(id = "name")
     private WebElement newItemNameInput;
 
-    @FindBy(xpath = "//*[@id=\"app\"]/div[6]/div/div/div[3]/button[2]")
+    @FindBy(className = "btnSave")
     private WebElement saveButton;
 
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")
@@ -53,17 +56,23 @@ public class AdminCitiesPage extends BasePage {
         return logoutButton;
     }
 
+    public WebElement getSuccessfullySavedMessage() {
+        return successfullySavedMessage;
+    }
+
     public void createNewCity(String city) {
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[1]/div[3]/form/div[1]/button")));
         newItemButton.click();
+
+        newItemNameInput.clear();
+        newItemNameInput.sendKeys(city);
 
         try {
             Thread.sleep(2000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
-
-        newItemNameInput.clear();
-        newItemNameInput.sendKeys(city);
 
         saveButton.click();
     }

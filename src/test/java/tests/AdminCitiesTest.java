@@ -12,7 +12,7 @@ import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 public class AdminCitiesTest extends BaseTest {
 
-    String city = "grad1212";
+    String city = "grad";
 
     @BeforeMethod
     @Override
@@ -54,7 +54,7 @@ public class AdminCitiesTest extends BaseTest {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table")));
 
         for (WebElement city : adminCitiesPage.getCitiesTable()) {
-            if (city.getText().contains(this.city)){
+            if (city.getText().contains(this.city)) {
                 WebElement editButton = city.findElement(By.id("edit"));
                 try {
                     Thread.sleep(2000);
@@ -70,5 +70,21 @@ public class AdminCitiesTest extends BaseTest {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[2]/div/div/div/div/div[1]")));
 
         Assert.assertTrue(adminCitiesPage.getEditSuccessfullySavedMessage().getText().contains("Saved successfully"));
+    }
+
+    @Test
+    public void searchCity() {
+        //presence of search bar
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
+        adminCitiesPage.getSearchInput().sendKeys(this.city);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        WebElement result = webDriver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]"));
+        Assert.assertEquals(result.getText(), this.city);
     }
 }

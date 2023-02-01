@@ -55,6 +55,9 @@ public class AdminCitiesPage extends BasePage {
     @FindBy(id = "name")
     private WebElement editInput;
 
+    public WebElement getSearchInput() {
+        return searchInput;
+    }
 
     public WebElement getSaveButton() {
         return saveButton;

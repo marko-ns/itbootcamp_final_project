@@ -49,6 +49,10 @@ public class AdminCitiesPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")
     private WebElement deletedMessage;
 
+    public WebElement getLogoutButton() {
+        return logoutButton;
+    }
+
     public void createNewCity(String city) {
         newItemButton.click();
 

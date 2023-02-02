@@ -23,6 +23,13 @@ public class LoginPage extends BasePage {
     @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[3]/span/form/div/div[3]/button")
     private WebElement loginButton;
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[1]/h1")
+    private WebElement loginHeader;
+
+    public WebElement getLoginHeader() {
+        return loginHeader;
+    }
+
     public WebElement getEmailInput() {
         return emailInput;
     }
@@ -44,7 +51,6 @@ public class LoginPage extends BasePage {
 
         loginButton.click();
     }
-
 
 
 }

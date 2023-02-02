@@ -36,6 +36,11 @@ public abstract class BaseTest {
 
     @AfterClass
     public void afterClass() {
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         webDriver.quit();
     }
 

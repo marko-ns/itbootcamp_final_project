@@ -14,7 +14,7 @@ import java.util.Random;
 
 public class ProfileTest extends BaseTest {
 
-    String city = "Cali";
+    String city = "New York";
 
 //    public String randomCity(){
 //        List<String> citiesList = Arrays.asList("New York", "Cali", "Havana");

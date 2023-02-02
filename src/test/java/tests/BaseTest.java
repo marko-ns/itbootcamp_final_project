@@ -20,6 +20,8 @@ public abstract class BaseTest {
     protected SignupPage signupPage;
     protected AdminCitiesPage adminCitiesPage;
 
+    protected MyProfilePage myProfilePage;
+
     @BeforeClass
     public void beforeClass() {
         this.webDriver = new ChromeDriver();
@@ -29,6 +31,7 @@ public abstract class BaseTest {
         this.welcomePage = new WelcomePage(webDriver, webDriverWait);
         this.signupPage = new SignupPage(webDriver, webDriverWait);
         this.adminCitiesPage = new AdminCitiesPage(webDriver, webDriverWait);
+        this.myProfilePage = new MyProfilePage(webDriver, webDriverWait);
     }
 
     @AfterClass

@@ -25,6 +25,11 @@ public class AdminCitiesTest extends BaseTest {
         //presence of "Welcome" header message
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/h1")));
         welcomePage.getToAdminCities();
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @AfterMethod
@@ -39,7 +44,7 @@ public class AdminCitiesTest extends BaseTest {
         Assert.assertTrue(adminCitiesPage.getLogoutButton().isDisplayed());
     }
 
-    @Test
+    @Test (priority=1)
     public void createNewCity() {
 
         adminCitiesPage.createNewCity(city);
@@ -48,7 +53,7 @@ public class AdminCitiesTest extends BaseTest {
         Assert.assertTrue(adminCitiesPage.getSuccessfullySavedMessage().getText().contains("Saved successfully"));
     }
 
-    @Test
+    @Test (priority=3)
     public void editCity() {
         //presence of table
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table")));
@@ -72,7 +77,7 @@ public class AdminCitiesTest extends BaseTest {
         Assert.assertTrue(adminCitiesPage.getEditSuccessfullySavedMessage().getText().contains("Saved successfully"));
     }
 
-    @Test
+    @Test (priority=2)
     public void searchCity() {
         //presence of search bar
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
@@ -88,7 +93,7 @@ public class AdminCitiesTest extends BaseTest {
         Assert.assertTrue(result.getText().contains(this.city));
     }
 
-    @Test
+    @Test (priority=4)
     public void deleteCity(){
         //presence of search bar
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));

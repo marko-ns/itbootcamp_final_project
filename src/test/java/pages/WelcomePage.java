@@ -26,6 +26,13 @@ public class WelcomePage extends BasePage {
     @FindBy(className = "v-list-item__title")
     private WebElement citiesButton;
 
+    @FindBy(xpath = "//*[@id=\"app\"]/div[1]/div/header/div/div[3]/a[3]")
+    private WebElement myProfileButton;
+
+    public WebElement getMyProfileButton() {
+        return myProfileButton;
+    }
+
     public WebElement getVerificationMessage() {
         return verificationMessage;
     }

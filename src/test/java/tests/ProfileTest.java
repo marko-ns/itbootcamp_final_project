@@ -14,7 +14,9 @@ import java.util.Random;
 
 public class ProfileTest extends BaseTest {
 
-    String city = "New York";
+    //city has to be changed every time before running a test
+    String city = "New York"; //todo
+
 
 //    public String randomCity(){
 //        List<String> citiesList = Arrays.asList("New York", "Cali", "Havana");
@@ -71,6 +73,8 @@ public class ProfileTest extends BaseTest {
         myProfilePage.getGitHubInput().sendKeys(Keys.CONTROL + "a");
         myProfilePage.getGitHubInput().sendKeys(Keys.DELETE);
         myProfilePage.getGitHubInput().sendKeys(gitHubLink);
+
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div/div[8]/button")));
 
         myProfilePage.getSaveButton().click();
 

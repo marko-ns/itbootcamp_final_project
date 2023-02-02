@@ -12,7 +12,7 @@ import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 public class AdminCitiesTest extends BaseTest {
 
-    String city = "grad11";
+    String city = "grad1";
 
     @BeforeMethod
     @Override

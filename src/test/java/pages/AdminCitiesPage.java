@@ -55,6 +55,14 @@ public class AdminCitiesPage extends BasePage {
     @FindBy(id = "name")
     private WebElement editInput;
 
+    public WebElement getDeletedMessage() {
+        return deletedMessage;
+    }
+
+    public WebElement getDeleteButton() {
+        return deleteButton;
+    }
+
     public WebElement getSearchInput() {
         return searchInput;
     }

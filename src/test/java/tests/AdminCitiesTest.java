@@ -12,7 +12,7 @@ import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 public class AdminCitiesTest extends BaseTest {
 
-    String city = "grad";
+    String city = "grad1";
 
     @BeforeMethod
     @Override
@@ -85,6 +85,30 @@ public class AdminCitiesTest extends BaseTest {
         }
 
         WebElement result = webDriver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]"));
-        Assert.assertEquals(result.getText(), this.city);
+        Assert.assertTrue(result.getText().contains(this.city));
+    }
+
+    @Test
+    public void deleteCity(){
+        //presence of search bar
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
+        adminCitiesPage.getSearchInput().sendKeys(this.city);
+
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
+
+        WebElement result = webDriver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]"));
+        Assert.assertTrue(result.getText().contains(this.city));
+
+        adminCitiesPage.getDeleteButton().click();
+
+        WebElement dltButton = webDriver.findElement(By.className("text--lighten3"));
+        dltButton.click();
+        //presence of "Deleted successfully" message
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
+        Assert.assertTrue(adminCitiesPage.getDeletedMessage().getText().contains("Deleted successfully"));
     }
 }

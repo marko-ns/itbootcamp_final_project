@@ -13,17 +13,7 @@ import java.util.List;
 import java.util.Random;
 
 public class ProfileTest extends BaseTest {
-
-    //city has to be changed every time before running a test
-    String city = "New York"; //todo
-
-
-//    public String randomCity(){
-//        List<String> citiesList = Arrays.asList("New York", "Cali", "Havana");
-//        Random random = new Random();
-//        String city = citiesList.get(random.nextInt(citiesList.size()));
-//        return city;
-//    }
+    String city = "Cali";
 
     @BeforeMethod
     @Override
@@ -58,9 +48,8 @@ public class ProfileTest extends BaseTest {
         myProfilePage.getPhoneInput().sendKeys(phone);
 
         myProfilePage.getCityInput().sendKeys(Keys.CONTROL + "a");
-        myProfilePage.getCityInput().sendKeys(Keys.DELETE);
         myProfilePage.getCityInput().sendKeys(city);
-        myProfilePage.getCityInput().sendKeys(Keys.RETURN);
+        myProfilePage.getCityInput().sendKeys(Keys.TAB);
 
         myProfilePage.getCountryInput().sendKeys(Keys.CONTROL + "a");
         myProfilePage.getCountryInput().sendKeys(Keys.DELETE);
@@ -84,6 +73,7 @@ public class ProfileTest extends BaseTest {
 
         Assert.assertEquals(myProfilePage.getNameInput().getAttribute("value"), name);
         Assert.assertEquals(myProfilePage.getPhoneInput().getAttribute("value"), phone);
+        //Assert.assertEquals(myProfilePage.getCityInput().getAttribute("value"), cityValue);
         Assert.assertEquals(myProfilePage.getCityInput().getAttribute("value"), city);
         Assert.assertEquals(myProfilePage.getCountryInput().getAttribute("value"), country);
         Assert.assertEquals(myProfilePage.getTwitterInput().getAttribute("value"), twitterLink);

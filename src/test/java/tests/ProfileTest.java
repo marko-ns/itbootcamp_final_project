@@ -8,12 +8,8 @@ import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Random;
-
 public class ProfileTest extends BaseTest {
-    String city = "Cali";
+    String city = "New York";
 
     @BeforeMethod
     @Override
@@ -73,7 +69,6 @@ public class ProfileTest extends BaseTest {
 
         Assert.assertEquals(myProfilePage.getNameInput().getAttribute("value"), name);
         Assert.assertEquals(myProfilePage.getPhoneInput().getAttribute("value"), phone);
-        //Assert.assertEquals(myProfilePage.getCityInput().getAttribute("value"), cityValue);
         Assert.assertEquals(myProfilePage.getCityInput().getAttribute("value"), city);
         Assert.assertEquals(myProfilePage.getCountryInput().getAttribute("value"), country);
         Assert.assertEquals(myProfilePage.getTwitterInput().getAttribute("value"), twitterLink);

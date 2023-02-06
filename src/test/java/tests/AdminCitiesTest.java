@@ -60,7 +60,7 @@ public class AdminCitiesTest extends BaseTest {
 
         for (WebElement city : adminCitiesPage.getCitiesTable()) {
             if (city.getText().contains(this.city)) {
-                WebElement editButton = city.findElement(By.id("edit"));
+                WebElement editButton = city.findElement(By.id("edit"));    //finding a Web element (edit button) within a Web element (row that contains my city)
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {

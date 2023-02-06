@@ -13,13 +13,13 @@ import java.time.Duration;
 public abstract class BaseTest {
 
     protected WebDriver webDriver;
+
     protected WebDriverWait webDriverWait;
     protected HomePage homePage;
     protected LoginPage loginPage;
     protected WelcomePage welcomePage;
     protected SignupPage signupPage;
     protected AdminCitiesPage adminCitiesPage;
-
     protected MyProfilePage myProfilePage;
 
     @BeforeClass

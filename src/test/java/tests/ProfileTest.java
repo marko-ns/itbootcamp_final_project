@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ProfileTest extends BaseTest {
-    String city = "New York";
+    String city = "Chicago";
 
     @BeforeMethod
     @Override

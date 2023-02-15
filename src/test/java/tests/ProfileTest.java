@@ -9,7 +9,7 @@ import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ProfileTest extends BaseTest {
-    String city = "Chicago";
+    String city = "New York";
 
     @BeforeMethod
     @Override
@@ -35,29 +35,7 @@ public class ProfileTest extends BaseTest {
         String twitterLink = "http://" + faker.internet().url();
         String gitHubLink = "http://" + faker.internet().url();
 
-        myProfilePage.getNameInput().sendKeys(Keys.CONTROL + "a");
-        myProfilePage.getNameInput().sendKeys(Keys.DELETE);
-        myProfilePage.getNameInput().sendKeys(name);
-
-        myProfilePage.getPhoneInput().sendKeys(Keys.CONTROL + "a");
-        myProfilePage.getPhoneInput().sendKeys(Keys.DELETE);
-        myProfilePage.getPhoneInput().sendKeys(phone);
-
-        myProfilePage.getCityInput().sendKeys(Keys.CONTROL + "a");
-        myProfilePage.getCityInput().sendKeys(city);
-        myProfilePage.getCityInput().sendKeys(Keys.TAB);
-
-        myProfilePage.getCountryInput().sendKeys(Keys.CONTROL + "a");
-        myProfilePage.getCountryInput().sendKeys(Keys.DELETE);
-        myProfilePage.getCountryInput().sendKeys(country);
-
-        myProfilePage.getTwitterInput().sendKeys(Keys.CONTROL + "a");
-        myProfilePage.getTwitterInput().sendKeys(Keys.DELETE);
-        myProfilePage.getTwitterInput().sendKeys(twitterLink);
-
-        myProfilePage.getGitHubInput().sendKeys(Keys.CONTROL + "a");
-        myProfilePage.getGitHubInput().sendKeys(Keys.DELETE);
-        myProfilePage.getGitHubInput().sendKeys(gitHubLink);
+        myProfilePage.fillOutInputFields(name, phone, city, country, twitterLink, gitHubLink);
 
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div/div[2]/span/form/div/div/div[8]/button")));
 

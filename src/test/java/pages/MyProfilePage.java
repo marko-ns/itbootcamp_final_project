@@ -1,11 +1,12 @@
 package pages;
 
+import org.openqa.selenium.Keys;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-public class MyProfilePage extends BasePage{
+public class MyProfilePage extends BasePage {
 
     public MyProfilePage(WebDriver driver, WebDriverWait driverWait) {
         super(driver, driverWait);
@@ -34,6 +35,27 @@ public class MyProfilePage extends BasePage{
 
     @FindBy(id = "city")
     private WebElement cityInput;
+
+    public void fillOutInputFields(String name, String phone, String city, String country, String twitterLink, String gitHubLink) {
+        nameInput.sendKeys(Keys.CONTROL + "a");
+        nameInput.sendKeys(name);
+
+        phoneInput.sendKeys(Keys.CONTROL + "a");
+        phoneInput.sendKeys(phone);
+
+        cityInput.sendKeys(Keys.CONTROL + "a");
+        cityInput.sendKeys(city);
+        cityInput.sendKeys(Keys.TAB);
+
+        countryInput.sendKeys(Keys.CONTROL + "a");
+        countryInput.sendKeys(country);
+
+        twitterInput.sendKeys(Keys.CONTROL + "a");
+        twitterInput.sendKeys(twitterLink);
+
+        gitHubInput.sendKeys(Keys.CONTROL + "a");
+        gitHubInput.sendKeys(gitHubLink);
+    }
 
     public WebElement getCityInput() {
         return cityInput;

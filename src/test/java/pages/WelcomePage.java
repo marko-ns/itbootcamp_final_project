@@ -1,11 +1,8 @@
 package pages;
 
-import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
-import org.openqa.selenium.support.ui.ExpectedConditions;
-import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class WelcomePage extends BasePage {
@@ -43,9 +40,11 @@ public class WelcomePage extends BasePage {
 
     public void getToAdminCities() {
         adminButton.click();
-        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[2]/div")));
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         citiesButton.click();
-//        Select select = new Select(adminButton);
-//        select.selectByIndex(1);
     }
 }

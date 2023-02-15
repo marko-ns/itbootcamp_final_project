@@ -12,7 +12,7 @@ import static org.openqa.selenium.support.locators.RelativeLocator.with;
 
 public class AdminCitiesTest extends BaseTest {
 
-    String city = "jakorandomgrad102";
+    String city = "Random";
 
     @BeforeMethod
     @Override
@@ -26,7 +26,7 @@ public class AdminCitiesTest extends BaseTest {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/h1")));
         welcomePage.getToAdminCities();
         try {
-            Thread.sleep(2000);
+            Thread.sleep(1000);
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
         }
@@ -34,6 +34,7 @@ public class AdminCitiesTest extends BaseTest {
 
     @AfterMethod
     public void afterMethod() {
+        //presence of logout button
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/div/header/div/div[3]/button[2]")));
         adminCitiesPage.getLogoutButton().click();
     }
@@ -62,7 +63,7 @@ public class AdminCitiesTest extends BaseTest {
             if (city.getText().contains(this.city)) {
                 WebElement editButton = city.findElement(By.id("edit"));    //finding a Web element (edit button) within a Web element (row that contains my city)
                 try {
-                    Thread.sleep(2000);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
@@ -82,13 +83,8 @@ public class AdminCitiesTest extends BaseTest {
         //presence of search bar
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
         adminCitiesPage.getSearchInput().sendKeys(this.city);
-
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+        //presence of searched city
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]")));
         WebElement result = webDriver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]"));
         Assert.assertTrue(result.getText().contains(this.city));
     }
@@ -99,12 +95,7 @@ public class AdminCitiesTest extends BaseTest {
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
         adminCitiesPage.getSearchInput().sendKeys(this.city);
 
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
-
+        webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]")));
         WebElement result = webDriver.findElement(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table/tbody/tr/td[2]"));
         Assert.assertTrue(result.getText().contains(this.city));
 

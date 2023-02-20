@@ -2,14 +2,16 @@ package tests;
 
 import com.github.javafaker.Faker;
 import org.openqa.selenium.By;
-import org.openqa.selenium.Keys;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
+
 public class ProfileTest extends BaseTest {
-    String city = "New York";
+
+    String[] cities = {"Barranquilla", "Bogotá", "Bucaramanga", "Cali", "Chicago", "Medellín", "New York", "Oakland", "San Francisco", "San Leandro"};
+    String city = cities[(int) (Math.random() * 10)];
 
     @BeforeMethod
     @Override

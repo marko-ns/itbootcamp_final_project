@@ -11,7 +11,7 @@ import org.testng.annotations.Test;
 public class ProfileTest extends BaseTest {
 
     String[] cities = {"Barranquilla", "Bogotá", "Bucaramanga", "Cali", "Chicago", "Medellín", "New York", "Oakland", "San Francisco", "San Leandro"};
-    String city = cities[(int) (Math.random() * 10)];
+    String city = cities[(int) (Math.random() * cities.length)];
 
     @BeforeMethod
     @Override

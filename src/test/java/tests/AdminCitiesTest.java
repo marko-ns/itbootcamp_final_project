@@ -45,7 +45,7 @@ public class AdminCitiesTest extends BaseTest {
         Assert.assertTrue(adminCitiesPage.getLogoutButton().isDisplayed());
     }
 
-    @Test (priority=1)
+    @Test(priority = 1)
     public void createNewCity() {
 
         adminCitiesPage.createNewCity(city);
@@ -54,7 +54,7 @@ public class AdminCitiesTest extends BaseTest {
         Assert.assertTrue(adminCitiesPage.getSuccessfullySavedMessage().getText().contains("Saved successfully"));
     }
 
-    @Test (priority=3)
+    @Test(priority = 3)
     public void editCity() {
         //presence of table
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[1]/div[2]/table")));
@@ -78,7 +78,7 @@ public class AdminCitiesTest extends BaseTest {
         Assert.assertTrue(adminCitiesPage.getEditSuccessfullySavedMessage().getText().contains("Saved successfully"));
     }
 
-    @Test (priority=2)
+    @Test(priority = 2)
     public void searchCity() {
         //presence of search bar
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
@@ -89,8 +89,8 @@ public class AdminCitiesTest extends BaseTest {
         Assert.assertTrue(result.getText().contains(this.city));
     }
 
-    @Test (priority=4)
-    public void deleteCity(){
+    @Test(priority = 4)
+    public void deleteCity() {
         //presence of search bar
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.id("search")));
         adminCitiesPage.getSearchInput().sendKeys(this.city);
@@ -105,6 +105,11 @@ public class AdminCitiesTest extends BaseTest {
         dltButton.click();
         //presence of "Deleted successfully" message
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
+        try {
+            Thread.sleep(2000);
+        } catch (InterruptedException e) {
+            throw new RuntimeException(e);
+        }
         Assert.assertTrue(adminCitiesPage.getDeletedMessage().getText().contains("Deleted successfully"));
     }
 }

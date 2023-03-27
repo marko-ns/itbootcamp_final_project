@@ -2,6 +2,7 @@ package tests;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
@@ -20,10 +21,13 @@ public abstract class BaseTest {
     protected SignupPage signupPage;
     protected AdminCitiesPage adminCitiesPage;
     protected MyProfilePage myProfilePage;
+    protected ChromeOptions options;
 
     @BeforeClass
     public void beforeClass() {
-        this.webDriver = new ChromeDriver();
+        this.options = new ChromeOptions();
+        options.addArguments("--remote-allow-origins=*");
+        this.webDriver = new ChromeDriver(options);
         this.webDriverWait = new WebDriverWait(webDriver, Duration.ofSeconds(20));
         this.homePage = new HomePage(webDriver, webDriverWait);
         this.loginPage = new LoginPage(webDriver, webDriverWait);

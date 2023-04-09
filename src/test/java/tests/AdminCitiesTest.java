@@ -105,11 +105,6 @@ public class AdminCitiesTest extends BaseTest {
         dltButton.click();
         //presence of "Deleted successfully" message
         webDriverWait.until(ExpectedConditions.presenceOfElementLocated(By.xpath("//*[@id=\"app\"]/div[1]/main/div/div[2]/div/div[3]/div/div/div/div/div[1]")));
-        try {
-            Thread.sleep(2000);
-        } catch (InterruptedException e) {
-            throw new RuntimeException(e);
-        }
         Assert.assertTrue(adminCitiesPage.getDeletedMessage().getText().contains("Deleted successfully"));
     }
 }

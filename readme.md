@@ -1,2 +1,2 @@
-A project I did as a part of ITBootcamp. It consists of an automated test of a dummy page "https://vue-demo.daniel-avellaneda.com" using Selenium and TestNG.
-It has two packages, one for tests and the other for pages. Each package has several classes for multiple web pages and multiple tests.
+A project I did as a part of ITBootcamp. It consists of an automated test of a dummy [page]("https://vue-demo.daniel-avellaneda.com") using Selenium and TestNG.
+I used Page Object Model to sort the tests and pages.
